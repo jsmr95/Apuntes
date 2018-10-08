@@ -1,0 +1,107 @@
+======= APUNTES SERVIDORES ========
+
+Desde local: git remote prune origin -> para eliminar las ramas remotas que ya no valen para nada.
+
+_PHP_:
+los metodos que empiezan por mb_... tienen en cuenta el multiByte. Las cadenas de string en php, son lastres de bytes.
+
+----------------
+COMPROBACIONES:
+-----------------		
+		de tipos (isDigit(), is_numeric(),...)
+		de valores (ctype_alpha, ctype_...)
+----------------------
+CONVERSIONES DE TIPO:	
+----------------------
+			(int) $x --> Casting de toda la vida
+			(float)
+			(string) $x --> Casting a cadena
+
+pero tb hay funciones como:	
+
+- intval(..) --> Coge algo y devuelve su valor en entero
+- floatval(..) --> Coge el valor del argumento y lo convierte a float
+- strval(..) --> Convierte su argumento a cadena
+- boolval(..) --> same
+
+--------------------------------------------
+COMPARACIONES DE VALORES DE TIPOS DISTINTOS:
+--------------------------------------------
+
+con el == y el ===,<,>,<=, >= !=, !==, <=>(comparador nave espacial), x ?? y(funcion de null), operador ternario x?y:z, operador elvis x ?: 25
+
+Operador funcion de null:
+Es como un coallesce, va buscando nulls.
+
+
+Operador elvis:
+"hola" ?: 25, si lo primero evalua a true, lo devuelve (hola) si no, devuelve lo otro.
+
+-------------|
+x <=> y	     |
+	     |
+-1 --> x<y   |
+0  --> x==y  |
+1  --> x>y   |
+-------------|
+
+Mijitas de la conversion string-->bool
+" " --> false : 		(bool) "" = false
+"0" --> false			(bool) "0" = false
+"resto de cadena" --> true	(bool) "h" = true	
+
+-----------
+CONSTANTES:
+-----------
+
+Para definir constantes:(2 maneras)
+
+-define('NOMBRE_CONSTANTE',74(valor));
+-const NOMBRE_CONSTANTE = 74 (valor);
+
+Hay algunas constantes ya definidas:
+__LINE__
+__FILE__
+__DIR__
+...
+
+Para saber si hay una constante definida: defined('NOMBRE');
+si da true, está definida, si no, false.
+
+
+--------------------------------
+ESTRUCTURAS DE CONTROL
+--------------------------------
+
+-if(...) else
+-switch(..)
+-for(..)
+-while(..)
+-do...while(..)
+((La palabra reservada elseif es mas correcto que usar else if{}..
+
+Otro modo del if:
+if (..):
+	...
+else:
+	....
+endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
