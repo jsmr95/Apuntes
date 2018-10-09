@@ -90,6 +90,156 @@ endif;
 
 
 
+=============================================================================
+
+INCLUSION DE SCRIPTS
+
+Se pueden incluir contenido php (aux.php) en otros archivos php.
+
+Con:
+
+require 'aux.php'; --> Esto desde f1.php, cuando llega al require, se va a aux.php y ejecuta ese codigo, luego sigue por el require hacia abajo.
+
+En el require hay que poner el nombre del fichero junto con su extensión. El require busca el archivo en primer lugar en 'include_path'(cuando no especificas la ruta completa), luego en el directorio actual.
+Por lo que es aconsejable y la mejor opcion es poner una ruta relativa al menos, si no una ruta absoluta.
+
+require './aux.php'; --> Ruta relativa indicando que esta en nuestro directorio actual, así se ahorra de ir al include_path.
+
+También podriamos usar una constante definida.
+require __DIR__ . '/aux.php';
+
+Tambien podemos usar include 'aux.php'; que funciona igual pero el require te para el programa si no encuentra el archivo, y el include si no te lo encuentra, te muestra un warning pero continua el programa.
+
+Tambien existe, require_once, include_once, que comprueba si ha habido un require previo a ese archivo, y se lo salta si lo ha ejecutado ya. Es decir, lo incluye si no ha sido incluido ya en la ejecución.
+
+_______
+RETURN
+
+
+El return al final del codigo de un archivo php (por ejemplo aux.php).
+
+aux.php =
+<?php
+
+echo 'Esto no lo va a mostrar'
+
+return 'Esto lo muestra';
+
+Luego podemos guardar este return en otro archivo php.
+Por ejemplo.
+
+pagina.php =
+<?php
+
+$res = require './aux.php';
+
+echo "Voy a mostrar lo que muestra aux.php: $res";
+
+
+--------------------------------
+FUNCIONES isset() y empty()
+--------------------------------
+
+isset() --> Determina si una variable esta definida y no es null. Retorna un boolean.
+
+empty() --> Determina si una variable está vacia o su valor evalua a false.
+
+
+------------------------
+	ARRAYS
+------------------------
+
+Cómo se crea un array:
+
+$a = array(23,47,35); --> $a[0] = 23; $a[1] = 47; $a[2] = 35;
+
+ó
+
+$a = [23,47,35];
+
+
+$a[3]; !ERROR! PORQUE NO ESTA DEFINIDO, OCUPA DE LA 0 A LA 2
+
+Pero lo puedo meter asi:
+
+$a[3] = 99;
+
+Esto incrementa el array. ahora tendria 4 posiciones 0-3
+
+$a[4] = 'hola'; no tienen porque ser del mismo tipo.
+
+$a; --> [23,47,35,99,'hola',] asi lo tendriamos el array.
+
+$[14] = 55; se le puede meter en la clave 14 el valor 55, las demas posiciones sin definir, no existirían. Se van añadiendo por el final, no se ordenan las claves.
+Una clave no tiene porque ser numerica, puede ser un string
+
+$a['gato'] = 'cat';
+
+
+$a[] = 435; Coge la última(mayor) clave y es la que se le aplica a 435.
+
+
+		OPERADORES DE ARRAY
+
+
+Podemo sumar arrays (union de dos arrays).
+El array de la izquierda, añadiendole los del array de la derecha.
+Si hay claves iguales, gana el de la izquierda.
+
+$a = [0=>'a', 1=>'b', 2=>'c'];
+$b = [3=>d, 4=>e, 5=>f];
+
+$a + $b ; --> [a,b,c,d,e,f]
+
+$c = [2=>d, 3=>e, 4=>f]
+
+$a + $c ; --> [a,b,c,e,f] --> se pisa la clave 2 y gana la del array $a.
+
+
+¿Cuándo dos arrays son iguales?
+
+Son iguales si tienen los mismos elementos, las mismas parejas clave-valor.
+
+
+Y son identicos cuando cuando los valores se evaluan y son iguales.
+
+
+!= y !== tb se usan.
+
+
+
+---------------------------------------------------------------
+			FUNCIONES DE ARRAY.	
+---------------------------------------------------------------
+
+count($a) --> Cuantos elementos tiene un array.
+array_sum(...) -->Suma los elementos de un array.
+range(0,4) --> Crea un array de los numeros del 0 al 4.
+sort($a) --> Ordena por valores el array, devuelve true si lo ha ordenado. elimina las claves.
+rsort($a) -->Ordena al reves.
+asort($a) --> Ordena por valores pero mantiene las claves, no las pierdes.
+arsort($a) --> Ordena por valores al reves y manteniendo las claves.
+ksort($a) --> Ordena por claves, y no elimina las claves
+krsor($a) --> Ordena al reves por claves.
+
+array_keys($a) --> Devuelve un array solo con las claves.
+array_values($a) --> Devuelve un array con los valores.
+
+array_combine(array_keys($a), array_values($a)) --> Combina dos arrays en uno, hay que pasarle como primer parametro un array de claves y luego otro de valores.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
