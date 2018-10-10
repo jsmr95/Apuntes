@@ -149,6 +149,11 @@ empty() --> Determina si una variable está vacia o su valor evalua a false.
 	ARRAYS
 ------------------------
 
+$argv --> Todos los argumentos de un archivo php (al ejecutarse)
+
+$argc --> El numero de argumentos que has pasado.
+
+
 Cómo se crea un array:
 
 $a = array(23,47,35); --> $a[0] = 23; $a[1] = 47; $a[2] = 35;
@@ -226,6 +231,47 @@ array_keys($a) --> Devuelve un array solo con las claves.
 array_values($a) --> Devuelve un array con los valores.
 
 array_combine(array_keys($a), array_values($a)) --> Combina dos arrays en uno, hay que pasarle como primer parametro un array de claves y luego otro de valores.
+
+
+
+array_merge($a) --> sirve para combinar dos arrays. Se modifican las claves de uno de los arrays, y se añaden al final del otro, siguiendo la secuencia numérica de claves de este segundo.
+
+Traversable --> Algo que puedes recorrer.
+
+
+$a = ['perro' => 'dog', 'gato'  => 'cat'];
+
+
+foreach ($a as $k => $v){	--> Si solo te interesa los valores $v o $k
+	echo "La palabra $k en ingles es $v.\n";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
