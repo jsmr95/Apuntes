@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/auxtabla2.php';
+require __DIR__ . '/auxiliar.php';
 
 if ($argc < 2) {
     muestraError("debes indicar el número de la tabla a mostrar.");

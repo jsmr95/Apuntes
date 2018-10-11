@@ -12,9 +12,15 @@ function tablaMult($numero)
     }
     return $res;
 }
-function muestraTabla($tabla, $numero)
+function muestraTabla(&$tabla, $numero)
 {
     foreach ($tabla as $k => $v){
         echo "$numero x $k = $v\n";
     }
+    $tabla = ['a','b','c'];
+}
+
+function suma(?int $a,?int $b=5):int
+{
+    return $a + $b;
 }
