@@ -7,17 +7,17 @@ los metodos que empiezan por mb_... tienen en cuenta el multiByte. Las cadenas d
 
 ----------------
 COMPROBACIONES:
------------------		
+-----------------
 		de tipos (isDigit(), is_numeric(),...)
 		de valores (ctype_alpha, ctype_...)
 ----------------------
-CONVERSIONES DE TIPO:	
+CONVERSIONES DE TIPO:
 ----------------------
 			(int) $x --> Casting de toda la vida
 			(float)
 			(string) $x --> Casting a cadena
 
-pero tb hay funciones como:	
+pero tb hay funciones como:
 
 - intval(..) --> Coge algo y devuelve su valor en entero
 - floatval(..) --> Coge el valor del argumento y lo convierte a float
@@ -48,7 +48,7 @@ x <=> y	     |
 Mijitas de la conversion string-->bool
 " " --> false : 		(bool) "" = false
 "0" --> false			(bool) "0" = false
-"resto de cadena" --> true	(bool) "h" = true	
+"resto de cadena" --> true	(bool) "h" = true
 
 -----------
 CONSTANTES:
@@ -214,7 +214,7 @@ Y son identicos cuando cuando los valores se evaluan y son iguales.
 
 
 ---------------------------------------------------------------
-			FUNCIONES DE ARRAY.	
+			FUNCIONES DE ARRAY.
 ---------------------------------------------------------------
 
 count($a) --> Cuantos elementos tiene un array.
@@ -274,7 +274,7 @@ global $variable;
 }
 
 
-Se pueden declarar los tipos de argumentos que pasamos a una función, pero solo pueden ser: int, float, bool, string. Y esto si se le pasa algo que no es del mismo tipo, el interprete se encarga de hacer un conversión implícita. 
+Se pueden declarar los tipos de argumentos que pasamos a una función, pero solo pueden ser: int, float, bool, string. Y esto si se le pasa algo que no es del mismo tipo, el interprete se encarga de hacer un conversión implícita.
 Al igual que podemos indicar el tipo que retorna una función.
 
 function suma(int $a, int $b):int
@@ -293,43 +293,28 @@ En el fichero--> Arriba del todo:
 declare(strict_types=1);
 
 
+==========================================0
+ORIENTACIÓN A OBJETOS
+
+Las variables guardan referencias a un objeto.
+$a = OBJETO;
+$b = $a; --> b apunta al mismo objeto que a.
+$a = OBJETO1; --> a apunta a un nuevo objeto, pero b sigue apuntando al anterior.
+
+Para acceder a las propiedades y métodos publicos de un objeto usamos ->
+$a -> nombre = "Jose";
+$b -> saluda();
+machacamos la propiedad nombre del objeto.
+
+$a = OBJETO;
+$b = &$a; //A b se le asigna por referencia a. b apunta al mimso objeto que a.
+$a = OBJETO1; //b tb apunta al nuevo objeto.
+
+$a = OBJETO;
+$b = clone $a; -->b apunta a una copia de OBJETO(copia superficial, no profunda) si el OBJETO tuviese objetos como propiedades
+				estos no se clonarian, si no que las propiedades objetos de la copia apuntarian a las propiedades objetos del OBJETO
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+------------------ CLASE DATETIME ----------------
+$a = new DateTime;
+$a->setTimezone(new DateTimeZone('Europe/Madrid')); --> esto te cambia de UTC, al horario de madrid
