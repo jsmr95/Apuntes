@@ -314,7 +314,16 @@ $a = OBJETO;
 $b = clone $a; -->b apunta a una copia de OBJETO(copia superficial, no profunda) si el OBJETO tuviese objetos como propiedades
 				estos no se clonarian, si no que las propiedades objetos de la copia apuntarian a las propiedades objetos del OBJETO
 
+Un objeto es == a otro cuando instancian a la misma clase y cuando sus propiedades tienen los mismos VALORES
+Un objeto es === a otro cuando son el mismo objeto.
+
+Podemos usar las constantes de las clases, con el nombre de la clase seguido de la resolución de ámbito (::)
+DateTime::ATOM; Llamamos a la constante ATOM de DateTime.
+
 
 ------------------ CLASE DATETIME ----------------
 $a = new DateTime;
 $a->setTimezone(new DateTimeZone('Europe/Madrid')); --> esto te cambia de UTC, al horario de madrid
+
+-------------------- EXCEPCIONES ----------------------
+Instancia de la clase Exception o de la clase Error.
