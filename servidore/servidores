@@ -340,3 +340,52 @@ try{
 	echo $e->getMessage();
 	die();
 }
+
+----------------- POSTGRES -----------------------
+Para instalar postgresql:
+desde .conf/scripts
+ejecutamos ./postgresql-install.sh
+
+para ver todas las bases de datos:
+sudo -u postgresql psql -l
+
+
+----------- COMENZAMOS NUESTRO FILMAFFINITY -------
+Vamos a crear una base de datos que contengan las peliculas:
+
+peliculas(_id,titulo,anyo,sinopsis,duracion,genero_id(claveAjena))
+generos(id,genero)
+
+Para entrar en la base de datos template1 -> sudo -u postgres psql -d template1
+Vamos a modificar template1:
+create extension pgcrypto; -->creamos esta extensión
+
+creamos una base de datos(nombre fa): sudo -u postgres createdb fa (fa->filmaffinity)
+creamos un usuario (nombre fa): sudo -u postgres createuser -P fa (-P para que te pida la contraseña y generarla)
+
+psql -U fa -h localhost -d fa -> para entrar en la base de datos fa (-d) con el usuario fa (-U) en mi maquina (-h localhost)
+
+psql -U fa -h localhost -d fa < fa.sql : inyecta el archivo fa.sql y lo ejecuta dentro de la base de datos fa con usuario fa.
+
+Desde psysh -> vamos a conectarnos a la base de datos ya creada.
+Debemos instanciar a la clase PDO.
+$pdo (o $con ) = new PDO('pgsql:host=localhost;dbname=fa'(tipo de base de datos, host nuestro y base de datos a la que nos conectamos),'fa'(usuario),'fa'(contraseña))
+
+Ya tenemos la instancia, podemos trabajar con ella, vamos a hacer un SELECT
+$sentencia = $pdo->query('SELECT * from generos;') //devuelve una sentencia, que la guardamos
+$res = $sentencia->fetchAll(); //guardo en res, el array que saca el fetchAll() de la sentencia
+$res[0][0] = 1; //consulto en el array res, el primero, que a su vez es un array, llamo a la posicion 0
+$res[0]['id'] = 1 //id es la primera posicion, de la primera posicion de $res;
+ //Se puede llamar por el indice (numero) o por el nombre de la columna ('id');
+ query(...) --> te ejecuta una sentencia (select) y te devuelve el resultado de la sentencia;
+ fetchAll() --> Te devuelve todas las filas.
+ fetch() --> te devuelve la siguiente fila, tiene un contador interno, que sabe que fila te ha dado.
+ 			si te da false, es que ya no hay mas filas que mostrar.
+fetchColumn() --> devuelve columna a columna, de una fila, y va pasando de fila
+				por lo que solo se puede coger una columna de cada fila.
+rowCount()--> el numero de filas.
+
+$pdo->exec(operaciones que no provoquen resultados, insert,update)-> devuelve el nº de filas afectadas.
+
+dentro de la base de datos:
+\d -> te dice las bases de datos que hay
