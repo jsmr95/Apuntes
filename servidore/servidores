@@ -327,3 +327,16 @@ $a->setTimezone(new DateTimeZone('Europe/Madrid')); --> esto te cambia de UTC, a
 
 -------------------- EXCEPCIONES ----------------------
 Instancia de la clase Exception o de la clase Error.
+-ErrorException, solo existe para convertir los errores no manejados en excp (Subclase de Exception)
+-Exception, para lanzar excepciones propias
+-Error, base de todos los errores de php //Convierte en excep los errores.
+
+el archivo erro_reporting se encuentra en /etc/php/7.1/cli/php.ini
+
+Para cazar cualquier exc o error
+try{
+	...
+} catch(Exception|Error $e){
+	echo $e->getMessage();
+	die();
+}
