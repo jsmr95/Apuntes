@@ -360,6 +360,8 @@ Para entrar en la base de datos template1 -> sudo -u postgres psql -d template1
 Vamos a modificar template1:
 create extension pgcrypto; -->creamos esta extensión
 
+HACER SIEMPRE, PARA QUE FUNCIONE
+
 creamos una base de datos(nombre fa): sudo -u postgres createdb fa (fa->filmaffinity)
 creamos un usuario (nombre fa): sudo -u postgres createuser -P fa (-P para que te pida la contraseña y generarla)
 
