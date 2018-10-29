@@ -388,6 +388,15 @@ fetchColumn() --> devuelve columna a columna, de una fila, y va pasando de fila
 rowCount()--> el numero de filas.
 
 $pdo->exec(operaciones que no provoquen resultados, insert,update)-> devuelve el nº de filas afectadas.
+$pdo->prepare(); //Aqui dentro usamos marcadores ':'
+$pdo->execute([:marcador => valor]);
 
 dentro de la base de datos:
 \d -> te dice las bases de datos que hay
+
+
+	TIPOS SQL --------- TIPOS PHP
+	nº Entero ----------- entero
+	null ---------------- null
+	bool ---------------- bool
+	el resto ------------ cadenas
