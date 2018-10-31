@@ -405,3 +405,11 @@ dentro de la base de datos:
 
 
 //INTRODUCIR TEMARIO DE TRANSACCIONES **TAREA**
+Las transacciones ofrecen Atomicidad, Consistencia, aislamiento y durabilidad. En resumen, hace que un trabajo llevado
+a cabo sobre una base de datos, sea aplicado de forma segura y sin interferencias de otras conexiones.
+Una transaccion se implementa para hacer que el lote de cambios se aplique a la vez.
+Para empezar una transaccion:
+PDO::beginTransaction();
+para finalizarla:
+PDO::commit();
+PDO::rollback();
