@@ -417,4 +417,14 @@ PDO::rollback();
 
 --------------- FILTRADO ------------------
 Validación --> solo podemos decir si es valido o no el valor.
-Saneado --> podemos también modificar el dato durante el saneado
+Saneado --> podemos también modificar el dato durante el saneado.
+
+Lo que debemos tener en cuenta es:
+- Filtrar la entrada: Validación y saneado básico(trim)
+
+- Escapar la salida:
+
+Resolvería tres problemas:
+	- La b.d. acepte los datos al insertar/modificar.
+	- Trabajar con datos correctos.
+	- Resuelve el Cross-Site Scripting (Escapando la salida).
