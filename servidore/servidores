@@ -417,4 +417,4 @@ PDO::rollback();
 
 --------------- FILTRADO ------------------
 Validación --> solo podemos decir si es valido o no el valor.
-Saneado --> podemos también modificar el dato durante el saneado
+Saneado --> podemos también modificar el dato durante el saneado.
