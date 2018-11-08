@@ -428,3 +428,13 @@ Resolvería tres problemas:
 	- La b.d. acepte los datos al insertar/modificar.
 	- Trabajar con datos correctos.
 	- Resuelve el Cross-Site Scripting (Escapando la salida).
+
+
+-------------- SESIONES ----------------------------
+PHPSESSID --> Identificador de sesion.
+$_SESSION --> Array que contiene las variables de sesion.
+El servidor en cuestión almacena una sesion para cada usuario que la visita, y le dice al usuario que guarde
+un PHPSESSID, para saber a qué usuario pertenece la sesión que guarda. Para que en un futuro cuando el mismo
+usuario quiera entrar, se quede guardado la lista de favoritos, el carrito,...
+
+Para crear una sesion o continuar(si ya estaba creada) --> session_start();
