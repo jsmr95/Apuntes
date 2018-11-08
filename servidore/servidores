@@ -437,4 +437,4 @@ El servidor en cuestión almacena una sesion para cada usuario que la visita, y 
 un PHPSESSID, para saber a qué usuario pertenece la sesión que guarda. Para que en un futuro cuando el mismo
 usuario quiera entrar, se quede guardado la lista de favoritos, el carrito,...
 
-Para crear una sesion o continuar(si ya estaba creada) --> session_start();
+Para crear una sesion o continuar(si ya estaba creada) --> session_start(); 
