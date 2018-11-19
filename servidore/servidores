@@ -453,3 +453,32 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	-Rasgo
 	-Constante
 	-Funcion
+
+----------- 8) INTEROPERABILIDAD-------------------------
+
+	- Versionado semántico
+	- Composer
+	- Autoloading de clases / interfaces / traits
+	- Recomendaciones del PHP-FIG (Estándares)
+
+	- VERSIONADO SEMÁNTICO:
+		A la hora de enumerar nuestras versiones, no se hace de cualquier manera, si no hay que seguir una serie de
+ 	recomendaciones, normas o estándares.
+ 	Podemos ir haciendo versiones de nuestros programas en GitHub con el etiquetado (tag), poniendo v1.0.0, o
+	con los releases que ofrecen mas información que los tags.
+
+	El versionado semantico es la manera en como hay que indicar las versiones, para que todo programador sepa
+	interpretar un numero de versión.
+
+	SIEMPRE serán tres numeros -> X,Y,Z (numero mayor, numero menor y parche)
+		- Cuando se corrige un fallo y el programa sigue funcionando igual, se incrementa el parche (Z)
+		- Todo cambio que haga que el programa funcione diferente, pero no lo haga incompatible con la version anterior,
+		 hace aumentar el numero menor (Y). Cuando se aumenta el menor, el parche pasa a valer 0.
+		- Los cambios que si rompen la compatibilidad, hace incremetar el numero mayor (X). Mi programa deja de funcionar
+		 con esa libreria de la que depende y ha hecho esta nueva versión.
+
+		 API -> Es el punto de conexión entre mi código y la librería que estoy usando.
+
+		 como saber que versiones van antes o despues:
+		 v1.0.0-alpha < v1.0.0-alpha.1 < v1.0.0-beta < v1.0.0-beta2 < v1.0.0-rc1 < v1.0.0
+		 rc -> release candidate (está apuntito de salir la versión)
