@@ -461,7 +461,9 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	- Autoloading de clases / interfaces / traits
 	- Recomendaciones del PHP-FIG (Estándares)
 
+
 	- VERSIONADO SEMÁNTICO:
+
 		A la hora de enumerar nuestras versiones, no se hace de cualquier manera, si no hay que seguir una serie de
  	recomendaciones, normas o estándares.
  	Podemos ir haciendo versiones de nuestros programas en GitHub con el etiquetado (tag), poniendo v1.0.0, o
@@ -482,3 +484,36 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 		 como saber que versiones van antes o despues:
 		 v1.0.0-alpha < v1.0.0-alpha.1 < v1.0.0-beta < v1.0.0-beta2 < v1.0.0-rc1 < v1.0.0
 		 rc -> release candidate (está apuntito de salir la versión)
+
+
+	- COMPOSER (Sistema de gestión de dependencias):
+
+		Debemos instalar composer.
+		Desde .conf/
+		Actualizamos .conf/, dentro de scripts, instalar composer-install.sh y luego composer-postinstall.sh.
+
+	-----PARA INCLUIR UNA LIBRERIA ---- composer require 'dependencia';
+		Esto incluye la version de producción, si queremos la versión en desarrollo, debemos indicar --dev al final.
+
+		Aunque composer install, instala las dependencias en desarrollo por defecto, si queremos las de produccion
+		debemos poner --no-dev.
+
+		El composer trabaja a nivel de proyecto en local.
+		Al ejecutar el composer con alguna libreria, se te crea la carpeta vendor que es donde incluye todo el codigo
+		de las dependencias de mi libreria, el composer.lock y composer.json.
+
+	CARPETA VENDOR:
+		La carpeta vendor, no se puede pushear a git ya que es composer es el que se la trae.
+		 Por lo que la debemos incluir en el .gitignore.
+		Si eliminamos la carpeta vendor, con un composer install, la vuelve a traer
+
+	COMPOSER.JSON:
+		Incluye la dependencia que indiquemos, esto lo indicamos con el composer require 'dependencia'
+		Archivo esencial!! Ya que indica la dependencia que necesita nuestro programa para funcionar.
+		Nos indica tb la versión que debe tener la dependencia para que nuestro programa funcione. (Restricción)
+
+	COMPOSER.LOCK:
+		Se genera automaticamente.
+		El composer.lock es la que dice que versión de nuestra dependencia se está instalando, y la bloquea.
+		Así podras usar las mismas versiones de los paquetes. Aunque salgan versiones nuevas, no se actualizará,
+		hasta que tu lo permitas. Así evitaremos problemas de compatibilidad.
