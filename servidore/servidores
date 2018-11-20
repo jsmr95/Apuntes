@@ -564,4 +564,8 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	semver.mwl.be --> pagina donde podemos practicar el tema de las restricciones de versiones
 
 
-	
+--------------------------AUTOLOADING -------------------------------
+
+	Permite incluir las clases cuando sea requerida.
+	Composer tiene un require especial -> require '/vendor/autoload.php';
+	Y esto hace que cada vez que sea requerida una clase, se implementa sola.
