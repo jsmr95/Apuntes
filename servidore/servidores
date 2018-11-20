@@ -569,3 +569,4 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	Permite incluir las clases cuando sea requerida.
 	Composer tiene un require especial -> require '/vendor/autoload.php';
 	Y esto hace que cada vez que sea requerida una clase, se implementa sola.
+	El autoloading carga, clases, interfaces y rasgos.
