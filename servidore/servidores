@@ -498,6 +498,9 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 		Aunque composer install, instala las dependencias en desarrollo por defecto, si queremos las de produccion
 		debemos poner --no-dev.
 
+		O tambien podremos incluir la dependencia en el archivo composer.json y luego ejecutar composer install.
+
+
 		El composer trabaja a nivel de proyecto en local.
 		Al ejecutar el composer con alguna libreria, se te crea la carpeta vendor que es donde incluye todo el codigo
 		de las dependencias de mi libreria, el composer.lock y composer.json.
@@ -510,10 +513,20 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	COMPOSER.JSON:
 		Incluye la dependencia que indiquemos, esto lo indicamos con el composer require 'dependencia'
 		Archivo esencial!! Ya que indica la dependencia que necesita nuestro programa para funcionar.
-		Nos indica tb la versión que debe tener la dependencia para que nuestro programa funcione. (Restricción)
+		Nos indica tb la versión que debe tener la dependencia para que nuestro programa funcione. (Restricción de versiones)
 
 	COMPOSER.LOCK:
 		Se genera automaticamente.
 		El composer.lock es la que dice que versión de nuestra dependencia se está instalando, y la bloquea.
 		Así podras usar las mismas versiones de los paquetes. Aunque salgan versiones nuevas, no se actualizará,
 		hasta que tu lo permitas. Así evitaremos problemas de compatibilidad.
+
+	a) El composer.lock en un principio no existe, al ejecutar el composer install, mira en el composer.json, las dependencias
+	que necesita y las versiones de estas que necesita y se las trae, es aquí cuando se crea el composer.lock y se indica
+	la versión que se ha instalado.
+
+	b) Si ya existe el composer.lock, y se ejecuta el composer install, compara los dos archivos y mira en el json las dependencias
+	si todos los paquetes especificados aparecen tb en el lock, y se instalarán los que no estan en el lock estando en el json (pq los
+	hemos incluido mas tarde)
+
+	
