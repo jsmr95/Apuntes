@@ -499,6 +499,8 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 		debemos poner --no-dev.
 
 		O tambien podremos incluir la dependencia en el archivo composer.json y luego ejecutar composer install.
+		O con composer update, actualiza los paquetes compatibles con las versiones y modifica lock para que quede
+		 constancia.
 
 
 		El composer trabaja a nivel de proyecto en local.
@@ -528,5 +530,38 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	b) Si ya existe el composer.lock, y se ejecuta el composer install, compara los dos archivos y mira en el json las dependencias
 	si todos los paquetes especificados aparecen tb en el lock, y se instalarán los que no estan en el lock estando en el json (pq los
 	hemos incluido mas tarde)
+
+	------------Restricciones sobre las versiones:--------
+	*En composer.json:
+
+	"symfony/console": "4.3.1" 	-> esto indica que quieres esa versión, y solo esa de la dependencia.
+	"symfony/console": "4.3" 	-> esto indica que quiere la versión 4.3.0.
+	"symfony/console": "4" 		-> esto indica que quiere la versión 4.0.0.
+	"symfony/console": ">=4.2.1 < 4.3.0"-> esto indica que quiere la versión 4.2.X cualquier parche
+	"symfony/console": ">=4.2.1 < 4.3.0 || 4.5.2"-> esto indica que quiere la versión 4.2.X cualquier parche ó 4.5.2
+	"symfony/console": "1.0 - 2.0 "-> esto indica que quiere la versión >= 1.0.0 < 2.1 en ese rango, con - te permite coger 2.0.2
+	"symfony/console": "1.0.0 - 2.1.0 "-> esto indica que quiere la versión >= 1.0.0 <= 2.1.0 en ese rango
+	"symfony/console": "1.4.* "		-> esto indica que quiere la versión 1.4.X cualquier parche
+	"symfony/console": "~4.3.1 "	-> version minima con la que tu programa funciona bien, permitimos el aumento del parche(1), de los demas no
+	"symfony/console": "~4.3 "		-> version minima con la que tu programa funciona bien, permitimos el aumento del menor(3), de los demas no
+	"symfony/console": "~4 "	-> version minima con la que tu programa funciona bien, NO permitimos el aumento del ultimo numero
+
+	LA VIRGUILILLA y GORRITO, NO PERMITE CAMBIOS EN MAYOR, PORQUE GENERARIAN PROBLEMAS DE COMPATIBILIDAD
+
+	"symfony/console": "^4.3.1 "	-> version minima con la que tu programa funciona bien, permitimos el aumento de parche(1) y menor (3)
+	"symfony/console": "^4.3 "		-> version minima con la que tu programa funciona bien, permitimos el aumento del menor(3) el parche tb
+
+	La 'estabilidad mínima' quiere decir que el composer por defecto se descarga los ultimos paquetes estables. Y no los
+	que estan en desarrollo.
+	Esto lo podriamos modificar en el composer.json, poniendo arriba:
+
+	"minimun-stability": "dev",
+
+	Le podemos meter -> stable, dev, alpha, beta, RC.
+
+	La restricción "@dev" hace que en ese paquete particular, te descargues la ultima versión de desarrollo.
+
+	semver.mwl.be --> pagina donde podemos practicar el tema de las restricciones de versiones
+
 
 	
