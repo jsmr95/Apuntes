@@ -570,3 +570,45 @@ Las 5 'cosas' que se ven afectadas por los espacios de nombres son:
 	Composer tiene un require especial -> require '/vendor/autoload.php';
 	Y esto hace que cada vez que sea requerida una clase, se implementa sola.
 	El autoloading carga, clases, interfaces y rasgos.
+
+
+
+
+
+
+
+
+
+
+
+---------------------- YII ------------------------
+Transparencias --> dwese.iesdonana.org/slides/introduccion-a-yii2.html#
+
+Framework--> proporciona funcionalidades genércias que el programador puede cambiar
+selectivamente, escribiendo código específico para una app específica.
+Se puede considerar como una app genérica incompleta en la cual el usuario
+puede hacer uso de ella para crear una app en particular.
+Ejemplos de framework web para php:
+	- Symfony
+	- Laravel
+	- CakePHP
+	- CodeIgniter
+	- Yii
+
+Microframework--> se refiere a un framework web minimalista, carece de muchas
+funcionalidades que posee un framework web completo (full-stack)
+
+Libreria vs Framework --> Los framework tiene 3 caract, que las diferencia de las
+librerias:
+	- Inversión del control: el flujo de control del programa viene dictado por
+	el framework y no por el programa.
+	- Extensibilidad: puede sobreescribir código para realizar funcionalidades
+	específicas.
+	-No modificable: El codigo del framework no se puede modificar, se puede ampliar,
+	por eso es extesible, pero no modificar su codigo.
+
+La principal diferencia:
+	- Con librerias: El código llama a la libreria por lo que el control lo
+	tiene el código.
+	- Con framework: El framework llama al código po lo que el control lo
+	tiene el framework.
