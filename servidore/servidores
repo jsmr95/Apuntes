@@ -612,3 +612,43 @@ La principal diferencia:
 	tiene el código.
 	- Con framework: El framework llama al código po lo que el control lo
 	tiene el framework.
+
+
+Página de yii --> www.yiiframework.com : lo visitaremos bastante por aquello de la guia
+	y de la API.
+
+El framework de yii no es mas que un paquete de composer.
+
+---------------- AYUDA --------------------------
+el comando -> hub create 'nombre'
+crea un repositorio remoto y lo enlace con el repositorio local en el que estas.
+Deberia pushear la rama al remoto -> git push -u origin master
+-------------------------------------------------
+
+La primera vez que entramos en un proyecto de yii
+Debemos indicar al atom que es un proyecto, para ello:
+Ctrl+Mayus+P -> buscamos save project, y pulsamos save.
+Ctrl+Mayus+P -> PHP ide serenata, tb lo ejecutamos.
+
+Para ejecutar un proyecto yii-> .yii/ serve
+
+
+-------------- MODELO VISTA-CONTROLADOR--------------
+ Separar en 3 'capas' :
+ 	-controlador --> se encarga de gestionar la Web request
+ 	-modelo --> Gestiona los datos dentro de la aplicacion. Tb se encarga de las
+	validaciones, metodos,... de los datos(CRUD).(Ej: Peliculas,Usuarios,...)
+	-vista --> Es la que se encarga de la interfaz, es decir, lo que se ve por pantalla...
+	Los formularios para recuperar datos, mostrar una lista de peliculas por ejemplo..
+
+---------------------------------------------------------------
+Mapeador Objeto-Relacional (ORM):
+	Se encarga de hacer la correspondencia entre la base de datos (tablas) y
+	las clases y/o objetos de los modelos.
+	Convierte las tablas en clases, las filas en objetos y las columnas en atributos.
+	En yii2 tenemos ActiveRecords como ORM.
+-------------------------------------------------------------
+Para acceder al generador automático -> index.php?r=gii
+
+Cambiamos los datos de la base de datos para que no nos de error:
+en la carpeta config, el archivo db.php, debemos cambiar el $dbname, $username y $password
