@@ -653,6 +653,13 @@ Para acceder al generador automático -> index.php?r=gii
 Cambiamos los datos de la base de datos para que no nos de error:
 en la carpeta config, el archivo db.php, debemos cambiar el $dbname, $username y $password
 
+------- PARA COMENZAR UN PROYECTO YII2 ---------
+Para crear un proyecto nuevo con la estructura de la plantilla básica:
+ $ composer create-project yiisoft/yii2-app-basic directorio
+
+Creará un directorio llamado directorio donde se volcará el contenido de la plantilla y quedará
+el proyecto listo para empezar su desarrollo.
+
 
 ----------------- MODELOS ------------------
 Partes de la arquitectura MVC.
