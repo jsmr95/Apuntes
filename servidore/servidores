@@ -652,3 +652,79 @@ Para acceder al generador automático -> index.php?r=gii
 
 Cambiamos los datos de la base de datos para que no nos de error:
 en la carpeta config, el archivo db.php, debemos cambiar el $dbname, $username y $password
+
+
+----------------- MODELOS ------------------
+Partes de la arquitectura MVC.
+Son objetos que representan datos, reglas y lógica de negocio.
+Se crean heredando de yii\base\Model
+Esto proporciona muchas características útiles:
+	-Atributos -> solo los modelos poseen atributos.
+	-Etiquetas de atributos
+	-Asignación masiva
+	-Reglas de validación
+	-Exportación de datos
+
+----------------------- DIFERENCIA (Variable instancia, Propiedad) ------------------------
++ Variable de instancia
+	Se declara en el ćodigo fuente de la clase:
+
+class Pepe
+{
+	public $hola;
+}
+
+$pepe = new Pepe();
+echo $pepe->hola;
+
++ Propiedades:
+	Son características que tienen todos los componentes de una aplicación Yii2
+	En principio, todas las variables de instancia públicas de una clase se pueden considerar
+	propiedades de la clase.
+	Además, se pueden declarar otras propiedades mediante getters y setters:
+
+class Pepe extends \yii\base\Component
+{
+	public $hola;
+	private $_adios;
+	public function getAdios()
+	{
+		return $this->_adios;
+	}
+
+	public fuction setAdios($adios)
+	{
+		this->_adios = $adios;
+	}
+}
+---------------- ATRIBUTOS ------------
+	Los modelos representan los datos de negocio en forma de atributos.
+	Cada attb es como una propiedad públicamente accesible de un modelo.
+	atributes()->Define los atributos del modelo dependiendo de las variables de instancia.
+	Que incluirá todos los atributos del modelo.
+
+----------------- DEFINICIÓN DE ATRIBUTOS ---------------
+De entrada, si la clase modelo hereda directamente de yii\base\Model esta contendrá
+todas sus variables no estáticas como atributos.
+
+Se puede sobreescribir el método attributes() de yii\base\Model.
+
+	public function attributes()
+	{
+		return['var1','var2']; -> Aqui incluyo las variables de instancia de la clase
+								que quiero que sean atributos en el modelo.
+
+	}
+
+-------------- ESCENARIOS ----------------
+Un modelo se puede usar en diferentes escenarios.
+Ej: Un modelo de User, para recoger los datos en login y tb para registrar un nuevo User.
+
+En escenarios diferentes, un modelo puede tener reglas y lógica de negocio diferente.
+
+Ej: el attb correo, puede ser obligatorio para registrar pero no para logear.
+
+Cada escenario define qué attb se pueden asignar masivamente y qué reglas de validación se aplican:
+	-La asignación masiva permite asignar valores a varios attb al mismo tiempo en una sola operacion.
+	-Las reglas de validación determinan si los atributos de un modelo son válidos, osea, si cumplen
+	determinadas condiciones.
