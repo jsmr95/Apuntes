@@ -809,3 +809,15 @@ public function rules()
 		[['numero','codigo','!created_at'], 'required'],
 	]
 }
+
+---------------------- URL -------------------------
+urlManager -> Se encarga de dos procesos.
+	- Encaminamiento -> A partir de una URL obtiene una ruta. (routing, parseRequest())
+	- Creacion de url -> A partir de una ruta, obtiene una URL. (createURL())
+
+Ej:
+/index.php?r=usuarios/update&id=2 (URL completa) /index.php (URL)
+
+['usuarios/update','id'=>2] (ruta)
+
+URL + Ruta = URL completa
