@@ -836,6 +836,8 @@ En YII2:
 			expresión regular que tiene que cuadrar para que se produzca el enrotamiento.
 		],
 	]
-	'defaultRoute' => 'generos/index' //No es configuración de URLmanager es del propio programa.
+	'defaultRoute' => 'generos/index', //No es configuración de URLmanager es del propio programa.
 									Esto hace que tu ruta por defecto sea la indicada.
+
+	'catchAll' => ['site/index'], //Para mantenimiento por ejemplo, ponga la rutas que ponga o clickes donde clikes, siempre te va a mostrar site/index
 	
