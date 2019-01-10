@@ -772,5 +772,30 @@ class User extens \yii\db\ActiveRecord
 			['correo','email'],
 		];
 	}
+}
 
+----------- REGLAS ACTIVAS -----------
+	- Las reglas activas son aquellas reglas que se aplican al escenario activo.
+	- Se aplica a todos los escenarios.
+	- Podemos indicar que una regla sólo se aplique a un determinado escenario usando la opción on.
+
+	public function rules()
+	{
+		return [
+			[['edad'], 'numeric', 'on' => self::SCENARIO_A],
+		];
+	}
+
+Podemos definir todo el rules:
+
+class User extens \yii\db\ActiveRecord
+{
+	...
+	public function rules()
+	{
+		return[
+			[['nombre','correo','asunto','cuerpo'],'required','on' => [self::SCENARIO_DEFAULT, selft::SCENARIO_A,],
+			['edad'], 'numeric', 'on' => [self::SCENARIO_A,]],
+		];
+	}
 }
