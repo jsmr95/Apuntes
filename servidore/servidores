@@ -799,3 +799,13 @@ class User extens \yii\db\ActiveRecord
 		];
 	}
 }
+
+--------- ATRIBUTOS INSEGUROS -------
+- ! delante de su nombre, en scenarios() o en rules()
+
+public function rules()
+{
+	return [
+		[['numero','codigo','!created_at'], 'required'],
+	]
+}
