@@ -821,3 +821,19 @@ Ej:
 ['usuarios/update','id'=>2] (ruta)
 
 URL + Ruta = URL completa
+
+En YII2:
+	web.php (archivo)
+
+	'urlManager' =>[
+		'enablePrettyUrl' => true, //Que se vea bonito (sin la ruta)
+		'showScriptName' => false, //Para que aparezca index.php o no
+		'rules' => [
+			'listageneros' => 'generos/index', //esta regla define, si escriben listageneros, te lleva a generos/index
+			'generos/update/<id:\d+>' => 'generos/update' => ponemos < > porque hemos puesto una expresion regular,
+															e indicamos id: para indicar que el \d (numero) es el id
+			Siempre es igual: la parte modificable está dividida en dos por ':', antes está el parametro, y luego la
+			expresión regular que tiene que cuadrar para que se produzca el enrotamiento.
+
+		],
+	]
