@@ -753,4 +753,24 @@ Cada escenario define qué attb se pueden asignar masivamente y qué reglas de v
 		}
 	}
 
-	
+Los atributos activos deben aparecer en el escenario actual y en rules().
+
+//metodo yii\base\Model::rules() ademas de para validacion, y saneado interesante para los escenarios.
+//Es 'necesario' sobreescribirlo. Los atributos que estan en las reglas de validacion ya se consideran seguros.
+
+class User extens \yii\db\ActiveRecord
+{
+	...
+
+	public function rules()
+	{
+		return [
+			//nombre, correo, asunto y cuerpo son obligatorios.
+			[['nombre','correo','asunto','cuerpo'], 'required'],
+
+			//el crreo debe ser una direccion de e-mail válida:
+			['correo','email'],
+		];
+	}
+
+}
