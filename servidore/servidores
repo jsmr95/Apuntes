@@ -735,3 +735,22 @@ Cada escenario define qué attb se pueden asignar masivamente y qué reglas de v
 	-La asignación masiva permite asignar valores a varios attb al mismo tiempo en una sola operacion.
 	-Las reglas de validación determinan si los atributos de un modelo son válidos, osea, si cumplen
 	determinadas condiciones.
+
+	Ej:
+	class User extends \yii\db\ActiveRecord
+	{
+		const SCENARIO_LOGIN = 'login';
+		const SCENARIO_REGISTRO = 'registro';
+
+		//sobreescribimos el metodo. Devolveria ['default' => ['nombre', 'correo', 'password'],];
+		public function scenarios()
+		{
+			return [
+				self::SCENARIO_DEFAULT => ['todos',...],
+				self::SCENARIO_LOGIN => ['nombre','password'],
+				selft::SCENARIO_REGISTRO => ['nombre','correo','password'],
+			];
+		}
+	}
+
+	
