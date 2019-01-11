@@ -818,7 +818,7 @@ urlManager -> Se encarga de dos procesos.
 Ej:
 /index.php?r=usuarios/update&id=2 (URL completa) /index.php (URL)
 
-['usuarios/update','id'=>2] (ruta)
+['usuarios/update','id'=>2] (ruta)->array que contiene controlador/accion
 
 URL + Ruta = URL completa
 
@@ -845,3 +845,33 @@ En YII2:
 --------------------- CREATING URLs ---------------------
 	Url::to(['']); -->Representa la ruta actual.
 	Url::home(); // /index.php?r=site%2Findex
+	Url::to(['generos/update'], true) -> te genera url abosluta
+
+------------------ REQUEST -> PETICIONES(POR ENCIMA)----------------
+Las peticiones que se hacen a una aplicación se representan como objeto de la clase Request.
+Podemos acceder a las peticiones a través de un componente request. Para obtener parametros,
+podemos usar get() o post(), metodos del componente request.
+
+Ej:
+$request = Yii::$app->request;
+$get = $request->get(); ->Devuelve todo el array get.
+$get = $request->get('id'); ->equivale a $id = isset($_GET['id']) ? $_GET['id'] : null;
+$get = $request->get('id',1); ->lo mismo que arriba pero no devuelve null si no lo hay, si no 1.
+$params = $request->bodyParams; ->Devuelve todos los parametros que van en el cuerpo de la peticion.
+								equivale a ->post(), ya que en un post, los parametros van en el cuerpo.
+$queryParams = $request->getQueryParam()->Devuelve todos los parametros pasados por la url, como ->get().
+
+Algunos Metodos ->
+$request->isAjax
+$request->isGet
+$request->isPost
+$request->isPut
+Devuelven true o false si la peticion es Ajax o no, Get o no,...
+
+Para saber si se ha mandado un cabecera o no:
+$headers = Yii::$app->request->headers;
+
+// devuelve el valor Accept de la cabecera
+$accept = $headers->get('Accept');
+
+if ($headers->has('User-Agent')) { // la cabecera contiene un User-Agent o no }
