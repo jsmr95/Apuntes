@@ -875,3 +875,55 @@ $headers = Yii::$app->request->headers;
 $accept = $headers->get('Accept');
 
 if ($headers->has('User-Agent')) { // la cabecera contiene un User-Agent o no }
+
+-------------------- RESPONSE -------------------
+
+Código de estado -> Yii::$app->response->statusCode = 200; Aqui se puede cambiar el valor por defecto.
+
+Lanzar una excepción:
+throw new \yii\web\NotFoundHttpException;
+
+Existen muchos tipos...BadRequestHttpException, ConflictHttpExce...,ForbiddenHttpEx...,...
+
+
+Para ver las cabeceras en las respuestas:
+$headers = Yii::$app->response->headers;
+
+// añade una cabecera Pragma. Las cabeceras Pragma existentes NO se sobrescribirán.
+$headers->add('Pragma', 'no-cache');
+
+// asigna una cabecera Pragma. Cualquier cabecera Pragma existente será descartada.
+$headers->set('Pragma', 'no-cache');
+
+// Elimina las cabeceras Pragma y devuelve los valores de las eliminadas en un array
+$values = $headers->remove('Pragma');
+
+Se puede CAMBIAR el formato de la respuesta:
+
+$response = Yii::$app->response;
+$response->format = \yii\web\Response::FORMAT_JSON; //Cambia el formato de la respuesta.
+$response->data = ['message' => 'hello world'];
+
+Tenemos todos estos formatos:
+
+HTML: implementado por yii\web\HtmlResponseFormatter. (default)
+XML: implementado por yii\web\XmlResponseFormatter.
+JSON: implementado por yii\web\JsonResponseFormatter.
+JSONP: implementado por yii\web\JsonResponseFormatter.
+
+Creo mi propia respuesta de tipo JSON, php ya tiene la funcion json_encode que hace lo mismo.
+public function actionInfo()
+{
+    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    return [
+        'message' => 'hello world',
+        'code' => 100,
+    ];
+}
+
+REDIRECCIONAR ->
+
+public function actionOld()
+{
+    return $this->redirect('http://example.com/new', 301);
+}
