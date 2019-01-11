@@ -997,3 +997,53 @@ echo $session->getFlash('postDeleted');
 // Petición #3
 // $result será `false` ya que el mensaje flash ha sido borrado automáticamente
 $result = $session->hasFlash('postDeleted');
+
+-------------------- COOKIES ---------------------
+
+/ devuelve la colección de cookie (yii\web\CookieCollection) del componente "request"
+$cookies = Yii::$app->request->cookies;
+
+// devuelve el valor "language" de la cookie. Si la cookie no existe, retorna "en" como valor por defecto.
+$language = $cookies->getValue('language', 'en');
+
+// una manera alternativa de devolver el valor "language" de la cookie
+if (($cookie = $cookies->get('language')) !== null) {
+    $language = $cookie->value;
+}
+
+// puedes también usar $cookies como un array
+if (isset($cookies['language'])) {
+    $language = $cookies['language']->value;
+}
+
+// comprueba si hay una cookie con el valor "language"
+if ($cookies->has('language')) ...
+if (isset($cookies['language'])) ...
+
+Enviar cookies ->
+
+// devuelve la colección de cookie (yii\web\CookieCollection) del componente "response"
+$cookies = Yii::$app->response->cookies;
+
+// añade una nueva cookie a la respuesta que se enviará
+$cookies->add(new \yii\web\Cookie([
+    'name' => 'language',
+    'value' => 'zh-CN',
+]));
+
+// remueve una cookie
+$cookies->remove('language');
+// equivalente a lo siguiente
+unset($cookies['language']);
+
+------ Validación de cookies -----
+En Yii siempre van cifradas.
+
+return [
+    'components' => [
+        'request' => [
+            'cookieValidationKey' => 'fill in a secret key here', //aqui va una clave de cifrado
+											que se usará para cifrar y descifrar.
+        ],
+    ],
+];
