@@ -1124,3 +1124,56 @@ $subQuery = (new Query())->select('id')->from('user')->where('status=1');
 
 // SELECT * FROM (SELECT `id` FROM `user` WHERE status=1) u
 $query->from(['u' => $subQuery]);
+Cuando en el from se pone una subconsulta siempre hay que ponerle un alias
+
+
+-------------- where() ----------------
+	4 formas distintas:
+	-string format, e.g., 'status=1'
+	-hash format, e.g. ['status' => 1, 'type' => 2]
+	-operator format, e.g. ['like', 'name', 'test']
+	-object format, e.g. new LikeCondition('name', 'LIKE', 'test')
+
+	-String format : (condiciones sencillas)
+
+	$query->where('status=1');
+
+	// or use parameter binding to bind dynamic parameter values
+	$query->where('status=:status', [':status' => $status]);
+
+	// raw SQL using MySQL YEAR() function on a date field
+	$query->where('YEAR(somedate) = 2015');
+
+	-hash format: (Se limita a la comparación por igualdad)
+
+	// ...WHERE (`status` = 10) AND (`type` IS NULL) AND (`id` IN (4, 8, 15))
+	$query->where([
+    'status' => 10,
+    'type' => null,
+    'id' => [4, 8, 15],
+	]);
+
+	You can also use sub-queries with hash format like the following:
+
+	$userQuery = (new Query())->select('id')->from('user');
+
+	// ...WHERE `id` IN (SELECT `id` FROM `user`)
+	$query->where(['id' => $userQuery]);
+
+	-operator format: [operator, operand1, operand2, ...]
+
+	Como operator, podemos usar -> and, or, not, between, not between, in, not in,
+	 like,not like, exists, not exists, <,>,...
+
+	Ejemplo:
+	x=1 AND (y=3 OR z=5) -> ['and',['=',x,1],['or',['=',y,3],['=',z,5]]]
+
+	La operación AND es la principal que engloba el resulta de x=1 y (y=3 OR z=5), por lo
+	que se empieza por 'and', le sigue la primera operación (izquierda) es simple, por lo que
+	['=',x,1] y luego la segunda operacion(derecha) que a su vez se divide en un OR,
+	por lo que ['or',['=',y,3],['=',z,5]] como segundo operando del 'and'.
+
+	between -> ['between','id',1,10] ->[operator,column,operand1,operand2]
+	not -> ['not', operand1] -> que no se cumpla
+	like -> ['like',name,tester] -> genera: name LIKE '%tester%'
+	
