@@ -1176,4 +1176,5 @@ Cuando en el from se pone una subconsulta siempre hay que ponerle un alias
 	between -> ['between','id',1,10] ->[operator,column,operand1,operand2]
 	not -> ['not', operand1] -> que no se cumpla
 	like -> ['like',name,tester] -> genera: name LIKE '%tester%'
-	
+
+La diferencia de filterWhere() con where(), es que, si tiene en cuenta los vacios.
