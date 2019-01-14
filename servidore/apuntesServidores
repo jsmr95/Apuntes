@@ -1075,7 +1075,7 @@ $query = (new \yii\db\Query())
 
 	Vamos a estudiar el Query Builder:
 
-	-Select()
+-----Select()------
 
 	$query->select(['id', 'email']); MEJOR USAR ARRAYS
 
@@ -1105,3 +1105,22 @@ $query->select('user_id')->distinct();
 addSelect()
 $query->select(['id', 'username'])
     ->addSelect(['email']);
+
+------from() -------
+// SELECT * FROM `user`
+$query->from('user');
+
+
+$query->from(['public.user u', 'public.post p']);
+// equivalent to:
+$query->from('public.user u, public.post p'); //PRODUCTO CARTESIANO
+
+Alias ------
+$query->from(['u' => 'public.user', 'p' => 'public.post']);
+el alias es el clave, y la tabla el valor.
+
+---Podemos usar el resultado de una subconsulta
+$subQuery = (new Query())->select('id')->from('user')->where('status=1');
+
+// SELECT * FROM (SELECT `id` FROM `user` WHERE status=1) u
+$query->from(['u' => $subQuery]);
