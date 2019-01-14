@@ -1057,3 +1057,51 @@ Está por encima de DAO(db) y PDO.
 Active Record está por encima de QueryBuilder, es un ORM. Transforma las tablas en clases, las filas en objetas y columnas en attributos.
 Un Active Record es un tipo especial de modelo.
 Con AR podemos crear relaciones entre tablas, cada AR representa a una tabla.
+
+Query Builder -> (Evitas sql)
+
+$rows = (new \yii\db\Query())
+    ->select('id, name') //si no pasamos el select, es como un select *
+    ->from('user')
+    ->limit(10)
+    ->all();
+
+// que es equivalente al siguiente código:
+
+$query = (new \yii\db\Query())
+    ->select('id, name')
+    ->from('user')
+    ->limit(10);
+
+	Vamos a estudiar el Query Builder:
+
+	-Select()
+
+	$query->select(['id', 'email']); MEJOR USAR ARRAYS
+
+	// equivalent to:
+
+	$query->select('id, email');
+
+	Podemos usar alias:
+		$query->select(['user.id AS user_id', 'email']);
+
+		// equivalent to:
+
+		$query->select('user.id AS user_id, email');
+
+Si no llamamos el metodo select() es como un *.
+
+Podemos usar consultas como subconsultas:
+$subQuery = (new Query())->select('COUNT(*)')->from('user');
+
+// SELECT `id`, (SELECT COUNT(*) FROM `user`) AS `count` FROM `post`
+$query = (new Query())->select(['id', 'count' => $subQuery])->from('post');
+
+Distinct();
+// SELECT DISTINCT `user_id` ...
+$query->select('user_id')->distinct();
+
+addSelect()
+$query->select(['id', 'username'])
+    ->addSelect(['email']);
