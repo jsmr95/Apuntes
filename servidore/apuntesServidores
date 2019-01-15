@@ -1178,8 +1178,10 @@ Cuando en el from se pone una subconsulta siempre hay que ponerle un alias
 	like -> ['like',name,tester] -> genera: name LIKE '%tester%'
 
 La diferencia de filterWhere() con where(), es que, salta los vacios.
-se puede añadir filterWhere() mas tarde al where, con andFilterWhere, orFilterWhere(),...
-
+se puede añadir filterWhere() mas tarde al filterWhere, con andFilterWhere, orFilterWhere(),...
+al igual que al where, se le puede asignar mas condiciones despues, con andWhere(), orWhere(),...
+PERO CUIDADO, OJO PIOJO -> eso toma como primer parametro, lo que ya habia, y le aplica
+la operacion OR, AND, ... con la condición que se pasa como parametro.
 ------------ join() --------------------------
 $query->join('LEFT JOIN',tabla,condicion);
 
