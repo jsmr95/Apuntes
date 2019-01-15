@@ -1182,6 +1182,7 @@ se puede añadir filterWhere() mas tarde al filterWhere, con andFilterWhere, orF
 al igual que al where, se le puede asignar mas condiciones despues, con andWhere(), orWhere(),...
 PERO CUIDADO, OJO PIOJO -> eso toma como primer parametro, lo que ya habia, y le aplica
 la operacion OR, AND, ... con la condición que se pasa como parametro.
+
 ------------ join() --------------------------
 $query->join('LEFT JOIN',tabla,condicion);
 
@@ -1214,3 +1215,34 @@ $query = (new \yii\db\Query())
 	Permite hacer un array, poniendo como clave lo incluido como parametro en indexBy(indice),
 	 y como valor lo que deseemos tomar (all(),column(),scalar(),one()).
 	 Y asi, hacemos parejas de clave, valor.
+Pero simplemente se lo acopla al final, no pone parentesis ni nada.
+
+--------------- RENDIMIENTO --------------
+	->one()
+	Esto se trae todas las filas, pero solo te muestra una. Desde un punto de vista, de
+	rendimiento y escalabilidad es muy pobre.
+	Lo suyo sería poner limit(1):
+	->limit(1)->one(1);
+
+	Solo se trae 1 y es la que se muestra.
+	Tambien hay que tener en cuenta, ya que muchas veces el where, ya filtra, para
+	que la condición solo la cumpla una fila, que es la que se trae y con one() es
+	la que se muestra.
+
+	------each y batch ---------
+	foreach($query->all() as $user){
+	...
+	}
+	Esto, si $query tubiese 1000000 filas, la RAM petaría, ya que se lo intenta
+	traer todo a la vez.
+
+	-Se podria sustituir el all() por un each(), que se trae las filas por tandas,
+	por defecto 100,es decir, la primera vez que se llama, se trae las primeras 100, por lo
+	que hasta que no se ejecuta la 101 vez, no se vuelve a traer otras 100. Cuando se ejecuta
+	la numero 50, no se la pide al postgres, ya que la tiene en memoria de la primera vez que
+	se ejecutó (y se trajo las 100 primeras filas). Ponemos as $user, ya que podemos ir
+	fila a fila.
+
+	-Se podria sustituir el all() por batch(), que se trae las 100 primeras filas, pero
+	te devuelve un array (las 100), por eso ponemos as $users, por lo que dentro del
+	foreach, deberiamos hacer otro bucle, para recorrer ese array de 100 filas.
