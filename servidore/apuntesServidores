@@ -1177,4 +1177,37 @@ Cuando en el from se pone una subconsulta siempre hay que ponerle un alias
 	not -> ['not', operand1] -> que no se cumpla
 	like -> ['like',name,tester] -> genera: name LIKE '%tester%'
 
-La diferencia de filterWhere() con where(), es que, si tiene en cuenta los vacios.
+La diferencia de filterWhere() con where(), es que, salta los vacios.
+
+------------ join() --------------------------
+$query->join('LEFT JOIN',tabla,condicion);
+
+Existen tres mejores soluciones:
+	-innerJoin()
+	-leftJoin()
+	-rightJoin()
+
+	$query->leftJoin(tabla,condicion);
+
+------------ orderBy() --------------------------
+$query->orderBy([
+'id' => SORT_ASC,
+'name' => SORT_DESC,
+]);
+
+$query->orderBy('id ASC, name DESC');
+
+-------------- groupBy() -----------------
+Que sepamos que existe y el addGroupBy() para asignar otro parametro para agrupar.
+
+------------- indexBy() -----------------------
+// returns [100 => ['id' => 100, 'username' => '...', ...], 101 => [...], 103 => [...], ...]
+$query = (new \yii\db\Query())
+    ->from('user')
+    ->limit(10)
+    ->indexBy('id')
+    ->all();
+
+	Permite hacer un array, poniendo como clave lo incluido como parametro en indexBy(indice),
+	 y como valor lo que deseemos tomar (all(),column(),scalar(),one()).
+	 Y asi, hacemos parejas de clave, valor.
