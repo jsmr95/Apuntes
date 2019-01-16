@@ -1270,3 +1270,11 @@ asociativo(['sinopsis' => null]). Con la diferencia de devolver One o All.
 
 Active record, crea a partir de una tabla una clase ->
 	De cada columna, crea un atributo.
+
+---------------- ActiveQuery --------------------------
+Consiste en usar el metodo ::find()
+
+$model = app\models\Peliculas::find() ->devuelve instancia de ActiveQuery
+$model->where(...)->all() -> 'Select * from peliculas where ...'; y lo trae todo.
+
+$model->asArray()->all() -> te devuelve lo mismo, pero no en forma de instancias, si no de array.
