@@ -754,6 +754,7 @@ Cada escenario define qué attb se pueden asignar masivamente y qué reglas de v
 	}
 
 Los atributos activos deben aparecer en el escenario actual y en rules().
+	Estos se pueden asignar masivamente.
 
 //metodo yii\base\Model::rules() ademas de para validacion, y saneado interesante para los escenarios.
 //Es 'necesario' sobreescribirlo. Los atributos que estan en las reglas de validacion ya se consideran seguros.
@@ -1246,3 +1247,26 @@ Pero simplemente se lo acopla al final, no pone parentesis ni nada.
 	-Se podria sustituir el all() por batch(), que se trae las 100 primeras filas, pero
 	te devuelve un array (las 100), por eso ponemos as $users, por lo que dentro del
 	foreach, deberiamos hacer otro bucle, para recorrer ese array de 100 filas.
+
+--------------------- ACTIVE RECORDS ---------------------
+
+Active records es un tipo de modelo que se apoya en una tabla.
+$model->attributes -> te devuelve los atributos de un modelo.
+$model->scenarios() ->devuelve los escenarios del modelo.
+$model->isNewRecord ->Devuelve true si el modelo no existe en la bd. (Se ha instanciado, pero aun no se ha introducido.)
+$model->attributes = ['titulo' => 'el patio', 'anyo' => 1999];
+Asignación masiva de atributos.
+$model->validate() -> comprobamos si las reglas de validacion se cumplen
+$model->save() -> Esto hace un validate e inserta en la base de datos el modelo.
+
+app\models\Peliculas::findOne(1) -> devuelve una instancia en base al id, o null
+ si no encuentra nada.
+
+app\models\Peliculas::findAll([1,5]) ->devuelve dos instancias en un array segun id.
+app\models\Peliculas::findAll(['sinopsis' => null]) ->devuelve todas las instancias que cumplan la condicion.
+
+tanto findOne() como findAll() permiten un escalar(un numero), un array ([1,2]) y un array
+asociativo(['sinopsis' => null]). Con la diferencia de devolver One o All.
+
+Active record, crea a partir de una tabla una clase ->
+	De cada columna, crea un atributo.
