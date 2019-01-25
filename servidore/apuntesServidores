@@ -1393,3 +1393,25 @@ required -> ya visto
 safe -> marca attrb como seguro, no hace validacíon ni filtro, al marcarlo como seguro, se le puede hacer asignación masiva
 unique -> comprueba que ese valor no existe ya en la db
 url -> comprueba si tiene forma de url.
+
+-------- Creacion de validadores --------------
+-Validadores en linea: (función anónima)
+	Signatura -> function($attribute, $params, $validator){}
+Ejemplo:
+
+['token', function($attribute, $params, $validator){
+	if(!ctype_alum($this->$attribute)){
+		$this->addError($attribute, 'The token must contain letters or digit!');
+	}
+}]
+
+Ó se puede llamar a una función ya creada:
+
+['token', 'funcionHola']...
+
+public function funcionHola($attribute, $params, $validator)
+{
+if(!ctype_alum($this->$attribute)){
+	$this->addError($attribute, 'The token must contain letters or digit!');
+}
+}
