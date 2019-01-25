@@ -1357,3 +1357,15 @@ el validador filter, tiene la opcion filter con la que aplica la función.
 
 skipOnEmpty ó skipOnError podemos usar.
 skipOnError -> si el attrb tiene errores de alguna otra regla anterior, no se aplica esta regla.
+
+
+---------- Manejadores de inputs vacios----------------------
+
+[['username','email'], 'default'] //Si son vacios los convierte a nulos
+[['level'], 'default', 'value' => 1] //Si es vacio lo convierte a 1
+
+Para Yii vacio es considerado: string vacio, array vacio o nullo.
+Se puede modificar eso :
+['agree','required','isEmpty' => function($value){
+	return empty($value);
+}];
