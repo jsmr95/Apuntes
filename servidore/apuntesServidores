@@ -1299,3 +1299,61 @@ Entre modelos hay relaciones, por ejemplo Peliculas y Generos. La relación gene
 devuelve la instancia del genero de una determinada pelicula, devuelve una instancia de tipo Generos.
 Sin embargo la relación peliculas, devuelve un tipo Peliculas[], ya que un genero, puede pertenecer
 a varias peliculas.
+
+-------------------- DECLARACION DE REGLAS ----------------------
+
+Las reglas de validaciones se aplican a un modelo.
+Habria que declarar el metodo rules() o sobreescribirlo.
+Cada regla, es un array.
+
+	rules(){
+		return[
+			[1 regla],
+			[2 regla],
+			...
+		];
+	}
+
+	Regla:
+1º el atributo o atributos. entre []
+2º validador -> a que tipo de regla se refiere.
+3º on => ['scenario1',...] se puede definir los scenarios donde se aplica, si no se
+	pone on, se aplica a todos los scenarios.
+4º -> Si tiene opciones, se pondría aqui.
+
+[['password'], 'string', 'max' => 60], //esto es una regla max => 60 es una opcion del validador string
+[['username'],'required','message' => 'Please choose a username'];
+	message es una opcion del validador required. Personalizo el mensaje de error.
+
+
+----Validacion condicional -----------
+
+Usamos when ->
+[['state'],'required','when' => function($model){
+	return $model->country == 'USA';	//debe devolver true para que se valide,
+										//si no, no se valida y se salta. No falla.
+}]
+//Esta regla sería -> El estado es required 'cuando' country es USA, si no, no.
+
+
+-------------- FILTRADO DE DATOS ---------------
+
+return [
+	[['username', 'email'], 'trim'],	//al validar el modelo trimeas esos dos atributos
+	[['username', 'email'], 'default'],	//convierte los vacios en algo, normalmente en nulo.
+];
+
+Como validador, podemos introducir cualquier función que reciba un parametro y que
+devuelvan un valor.
+
+Por ejemplo usaremos: intval(),floatval(),strval(),boolval(),...
+	Cuando hagamos un validate, tb haremos conversión de tipo, si usamos alguna de estas
+	funciones...
+
+Estas funciones podemos usarlas a través del validador filter.
+
+[['age'],'filter','filter' => 'intval', 'skipOnEmpty' => true] //si es vacio, no se aplica la regla
+el validador filter, tiene la opcion filter con la que aplica la función.
+
+skipOnEmpty ó skipOnError podemos usar.
+skipOnError -> si el attrb tiene errores de alguna otra regla anterior, no se aplica esta regla.
