@@ -1369,3 +1369,27 @@ Se puede modificar eso :
 ['agree','required','isEmpty' => function($value){
 	return empty($value);
 }];
+
+---------- VALIDADORES PRINCIPALES o predeterminados-------------
+boolean -> comprueba si valor logico
+captcha -> comprobacion para ver si no es un robot
+compare -> comparar si dos attbr son iguales.(opciones -> compareValue, operator,...)
+date -> comprueba si tiene forma de fecha (no el tipo) o de fecha y hora (datetime), o de hora solo.(time)
+default -> ya hemos visto
+double -> comprueba si es double
+//each ->
+email -> si tiene forma de email
+exist -> el attrb es una clave ajena, comprueba que esa clave ajena, exista en su tabla como primary key.
+		No funciona en cliente, solo servidor.
+file -> checkeamos el archivo que vamos a subir
+filter -> ya hemos visto, filtrado general
+image -> checkeamos la imagen, ancho, alto, extension,...
+ip -> comprueba que es una direccion IP
+in -> comprueba si esta en un conjunto de valores
+integer -> comprueba si el valor es un entero
+match -> checkea a partir de una regExp (opcion -> pattern)
+number -> comprueba si es un número (opcion ->max, min)
+required -> ya visto
+safe -> marca attrb como seguro, no hace validacíon ni filtro, al marcarlo como seguro, se le puede hacer asignación masiva
+unique -> comprueba que ese valor no existe ya en la db
+url -> comprueba si tiene forma de url.
