@@ -1415,3 +1415,10 @@ if(!ctype_alum($this->$attribute)){
 	$this->addError($attribute, 'The token must contain letters or digit!');
 }
 }
+
+-------------------- PARA EMPEZAR UN PROYECTO con repositorio en git ---------------
+hub clone iesdonana/mueveme-gallegocerezuela
+cd directorio...
+make install
+db/create.sh -> Crea db 'mueveme' y 'mueveme_test', crea usuario mueveme y pass mueveme
+db/load.sh -> inyecta el archivo db/mueveme.sql
