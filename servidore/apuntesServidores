@@ -1445,3 +1445,12 @@ models, count y totalCount (mas destacados)
 count()-> devuelve el numero de objetos que hay en esa pagina
 
 De alguna manera, es agrupar, el ordenador, el paginador y el origen de los datos.
+
+--------------- WIDGETS ------------------
+Cualquier elemento gráfico que ponemos en una web (vista).
+Los widgets de datos, son los que visualizan datos.
+	- DetailView -> visualiza una instancia de un modelo.
+	- ListView -> visuaiza muchas instancias, cada una en una vista parcial.
+		Esto es, que se renderizan dentro de otra vista.
+	- GridView -> Visualiza los datos en forma de tabla, pero a su vez, permite la
+	paginacion, ordenacion, borrado, consultas, ...
