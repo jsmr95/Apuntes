@@ -1454,3 +1454,41 @@ Los widgets de datos, son los que visualizan datos.
 		Esto es, que se renderizan dentro de otra vista.
 	- GridView -> Visualiza los datos en forma de tabla, pero a su vez, permite la
 	paginacion, ordenacion, borrado, consultas, ...
+
+FORMA DE APLICARLO: (lo uso en una vista)
+
+DetailView -->
+
+<?= DetailView::widget([
+	'model' => $pelicula,
+	'attributes' => [
+		'titulo',
+		'anyo',
+		[
+			'label' => 'duracion',
+			'value' => $pelicula->duracion*60,
+			'format' => 'duration'
+		],
+		'created_at:datetime',
+		'precio:currency'
+	]
+])
+el formato text -> escapa lo que entre por value.
+el formato text es el formato por defecto en DetailView.
+el formato html -> escapa lo que entra por value, elimina todo lo peligroso.
+
+ListView -->
+Se le tiene que pasar el dataProvider y la vista parcial.
+
+<?= ListView::widget([
+	'dataProvider' => $dataProvider, //el data provider, viene del controlador.
+	'itemView' => '_genero', //este ListView lo hacemos desde index.
+]); ?>
+
+GridView ->
+
+<?= GridView::widget([
+	'dataProvider' => $dataProvider,
+]); ?>
+
+Te ofrece el CRUD, a nivel de instancias, una a una, ordenacion, paginacion,...
