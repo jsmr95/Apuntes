@@ -1428,3 +1428,20 @@ db/load.sh -> inyecta el archivo db/mueveme.sql
 con Yii\app\formatter;
 
 $formatter->asDate(new Date(), 'long');
+
+------------- DATA PROVIDERS -------------------
+Un proveedor de datos, te ordena y pagina.
+Un proveedor de datos, espera la llegada de datos, con los cuales, ordena y pagina.
+
+Los pasos serían:
+Creamos el proveedor
+Entradas:
+le pasamos el pagination
+le pasamos el sort
+deberia saber en que page está (url) y el sentido de la ordenacion
+le pasamos los datos
+y obtendriamos como salida:
+models, count y totalCount (mas destacados)
+count()-> devuelve el numero de objetos que hay en esa pagina
+
+De alguna manera, es agrupar, el ordenador, el paginador y el origen de los datos.
