@@ -1422,3 +1422,9 @@ cd directorio...
 make install
 db/create.sh -> Crea db 'mueveme' y 'mueveme_test', crea usuario mueveme y pass mueveme
 db/load.sh -> inyecta el archivo db/mueveme.sql
+
+----------------- FORMATEADOR ------------------
+
+con Yii\app\formatter;
+
+$formatter->asDate(new Date(), 'long');
