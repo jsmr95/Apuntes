@@ -1514,6 +1514,17 @@ En la vista, habria que trabajar con -> GridView::widget([
 			return $model*60;
 			}
 		'format' => 'duration', //Podemos coger cada atributo y aplicarle una configuracion
-		]
+		],
+		'genero.genero', //Podemos acceder a traves de la relacion genero, al atributo genero
+			//1º genero es la relacion, 2º genero es el atributo, 
 	]
 ]);
+
+----------------------- BUSCADORES ------------------------
+Para los buscadores, crearemos modelos parecidos al modelo que queremos buscar, en
+nuestro caso, vamos a crear una clase en la carpeta models, PeliculasSearch que
+extiende Peliculas.
+
+Cambiaremos las reglas de validaciones, ya que no son las mismas.
+
+Tiene que implementar un metodo search($params) que tiene que retornar un ActiveDataProvider
