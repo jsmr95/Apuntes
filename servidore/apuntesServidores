@@ -1492,3 +1492,28 @@ GridView ->
 ]); ?>
 
 Te ofrece el CRUD, a nivel de instancias, una a una, ordenacion, paginacion,...
+
+En un dataProvider, los datos vienen de una consulta, de una ActiveQuery.
+
+$dataProvider = new ActiveDataProvider([
+	'query' => Peliculas::find(),
+]);
+
+En la vista, habria que trabajar con -> GridView::widget([
+	'dataProvider' => $dataProvider,
+	'columns' => [	//Las columnas que queremos que aparezcan
+		'titulo',
+		'anyo',
+		'precio',
+		... //Hay 3 tipos de columnas, DataColumn, SerialColumn, ActionColumn
+			//Habria que ponerlo entre [ 'class' => SerialColumn::class, 'attribute' => 'titulo']
+			//Si solo ponemos 'titulo' sin [], da por hecho que es DataColumn con atributo titulo.
+		[
+		'attribute' => 'duracion',
+		'value' => function($model){
+			return $model*60;
+			}
+		'format' => 'duration', //Podemos coger cada atributo y aplicarle una configuracion
+		]
+	]
+]);
