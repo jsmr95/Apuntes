@@ -1541,4 +1541,9 @@ $js = <<<EOF		//Aqui meto todo lo de javascript
 	});
 EOF;
 
-$this->registerJs($js, View::POS_READY); //esto ya es en el php, el view::pos_ready es como el ready de jquery
+$this->registerJs($js, View::POS_READY); //esto ya es en la vista php, el view::pos_ready es como el ready de jquery
+
+--------------------- AUTENTICAR UN USUARIO ------------------
+Es el proceso de login, identificarte ante la aplicacion.
+Tenemos que tener una clase que implemente la interfaz yii\web\IdentityInterface
+y esa clase va a representar al usuario dentro de la aplicación.
