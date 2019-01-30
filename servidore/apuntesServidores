@@ -1529,4 +1529,16 @@ Cambiaremos las reglas de validaciones, ya que no son las mismas.
 
 Tiene que implementar un metodo search($params) que tiene que retornar un ActiveDataProvider
 
+
+-------- WIDGETS DE LA COMUNIDAD ---------
 demos.krajee.com --> web donde hay muchos WIDGETS
+
+--------- INTRODUCIR JS --------------
+
+$js = <<<EOF		//Aqui meto todo lo de javascript
+	$('#boton').on('click',function(){
+		alert('hola');
+	});
+EOF;
+
+$this->registerJs($js, View::POS_READY); //esto ya es en el php, el view::pos_ready es como el ready de jquery
