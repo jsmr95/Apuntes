@@ -1516,7 +1516,7 @@ En la vista, habria que trabajar con -> GridView::widget([
 		'format' => 'duration', //Podemos coger cada atributo y aplicarle una configuracion
 		],
 		'genero.genero', //Podemos acceder a traves de la relacion genero, al atributo genero
-			//1º genero es la relacion, 2º genero es el atributo, 
+			//1º genero es la relacion, 2º genero es el atributo,
 	]
 ]);
 
@@ -1528,3 +1528,5 @@ extiende Peliculas.
 Cambiaremos las reglas de validaciones, ya que no son las mismas.
 
 Tiene que implementar un metodo search($params) que tiene que retornar un ActiveDataProvider
+
+demos.krajee.com --> web donde hay muchos WIDGETS
