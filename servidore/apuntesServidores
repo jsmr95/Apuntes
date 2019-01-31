@@ -1600,3 +1600,18 @@ Yii::$app->security->generatePasswordHash('password'); Podriamos usar este méto
 Las vistas parciales, sirven para sacar factor comun.
 Si una vista hace render a otra vista, esta tiene que ser una vista parcial.
 Las vistas parciales empiezan por _ , ejemplo _form.php
+
+
+Para que una variable de instancia, pase a formar parte del modelo como atributo,
+debemos redefinir el metodo attributes() del modelo.
+Cogemos los atributos suyo, y le añadimos la variable de instancia.
+
+public function attributes(){
+	return array_merge(parent::attributes(),['password_repeat']);
+}
+
+Y al hacerlo atributo ya, debemos hacerlo seguro, lo añadimos a rules.
+[['password'],safe]
+[['password'],'compare']... Esto en rules, hace que el propio Yii 'compare' el
+password con password_repeat. Debemos marcar como safe al menos el password_repeat.
+Yii busca al atributo que se llame igual _repeat.
