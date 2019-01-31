@@ -1575,3 +1575,28 @@ Componente de aplicacion:
 Yii::$app->security
 
 El encabezado y pie de pagina, está en views/layout/main.php
+
+--------------- CIFRAR CONTRASEÑA AL HACER UN INSERT DE USUARIO --------------
+
+$user->save() -> inserta en la tabla el usuario y su contra, pero sin cifrar.
+
+Como le pasamos el crypt:
+Yii::$app->security->generatePasswordHash('password'); Podriamos usar este método.
+ Pero habria que cifrar la contraseña en todos los cambios de esta.
+ Lo suyo sería hacer cargo al modelo Usuarios el responsable de esta tarea, que antes
+ de hacer save() se cifre la contraseña.
+
+ Creamos un metodo beforeSave():
+ 	public function beforeSave($insert) //valor true si es insert, o false si es update
+	{
+		if (!parent::beforeSave($insert)){
+			return false; //hay que llamar al del padre para que no se pierda.
+		}
+		$this->password = Yii::$app->security->generatePasswordHash($this->password);
+		return true;
+	}
+
+------------------- Vistas Parciales-------------------
+Las vistas parciales, sirven para sacar factor comun.
+Si una vista hace render a otra vista, esta tiene que ser una vista parcial.
+Las vistas parciales empiezan por _ , ejemplo _form.php
