@@ -1547,3 +1547,25 @@ $this->registerJs($js, View::POS_READY); //esto ya es en la vista php, el view::
 Es el proceso de login, identificarte ante la aplicacion.
 Tenemos que tener una clase que implemente la interfaz yii\web\IdentityInterface
 y esa clase va a representar al usuario dentro de la aplicación.
+Cambiar en la configuración, carpeta web.php, el componente de aplicación 'user',
+y cambiar el identityClass -> app\models\Usuarios::class.
+
+Componente de aplicación:
+Yii:.$app->user
+yii\web\User
+Se encargada de todo lo que tiene que ver con los usuarios.
+
+app\models\Usuarios
+Subclase de ActiveRecord e implementa la interfaz yii\web\IdentityInterface
+Un usuario logueado, será instancia del modelo Usuarios
+
+LoginForm -> subclase de Model
+Modelo que se encarga de recoger los datos del usuario del login, y tb se encarga de loguearlo.
+
+SiteController (Acción: login())
+Primera accicon, load de SiteController
+Segunda accion, login de SiteController
+Tercera accion, valida el LoginForm
+Cuarta accion, si valida se hace el login del componente de aplicación Yii::$app->user
+Quinta accion, LoginForm llama a getuser() del modelo, para buscar si existe el usuario en la db
+Si existe, se loguea y listo.
