@@ -1569,3 +1569,9 @@ Tercera accion, valida el LoginForm
 Cuarta accion, si valida se hace el login del componente de aplicación Yii::$app->user
 Quinta accion, LoginForm llama a getuser() del modelo, para buscar si existe el usuario en la db
 Si existe, se loguea y listo.
+
+----Validación password ----
+Componente de aplicacion:
+Yii::$app->security
+
+El encabezado y pie de pagina, está en views/layout/main.php
