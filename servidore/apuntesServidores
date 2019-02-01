@@ -1625,3 +1625,32 @@ goto salto;
 .
 salto: //etiqueta salto
 funcion repetida que se puede usar arriba y aqui, para sacar factor común, usamos el goto
+
+-------------- Autorizacion -------------------
+
+Conseguimos que la app permita o no, el acceso a una parte del programa, dependiendo
+de los permisos.
+
+	-Filtrado de control de accesos.
+	-Control de accesos en roles. //Mas complejo, podría ser un elemento de innovación para el proyecto
+
+----------- Filtro de control de acceso ----------------
+
+El filtro hace una comprobación previa para autorizar o no el acceso.
+Todo filtro es un comportamiento, por lo que tiene que ir en el behaviors() del controlador.
+
+class -> AccessControl::class,
+only->['login','logout'] //acciones en las que se llevará acabo el filtro
+rules -> [
+ allow -> true, //si se concede o no
+ actions-> ['login','logout'], //A qué acciones
+ roles -> ['?'], //Donde indicamos quie puede acceder '?'=usuario anonimo, '@'=usuario logueado
+]
+[
+ allow -> true,
+ actions -> ['logout'],
+ roles -> ['@']
+]
+
+Aqui por ejemplo, se ejecutará tanto en login como en logout (lo puesto en only),
+se le dejará entrar en ambos a un anonimo, pero a un logout solo puede entrar un usuario logueado.
