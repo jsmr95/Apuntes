@@ -1654,3 +1654,8 @@ rules -> [
 
 Aqui por ejemplo, se ejecutará tanto en login como en logout (lo puesto en only),
 se le dejará entrar en ambos a un anonimo, pero a un logout solo puede entrar un usuario logueado.
+
+'matchCallback' => function($rule,$action){
+	return ...;
+}
+//Esto lo podemos poner en rules(), para realizar comprobaciones a la hora de intentar acceder a algun apartado.
