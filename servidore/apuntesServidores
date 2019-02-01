@@ -1615,3 +1615,13 @@ Y al hacerlo atributo ya, debemos hacerlo seguro, lo añadimos a rules.
 [['password'],'compare']... Esto en rules, hace que el propio Yii 'compare' el
 password con password_repeat. Debemos marcar como safe al menos el password_repeat.
 Yii busca al atributo que se llame igual _repeat.
+
+
+---- Uso de Goto ------------
+goto salto;
+//Aqui habri una función que se repite abajo
+.
+.
+.
+salto: //etiqueta salto
+funcion repetida que se puede usar arriba y aqui, para sacar factor común, usamos el goto
