@@ -1659,3 +1659,25 @@ se le dejará entrar en ambos a un anonimo, pero a un logout solo puede entrar u
 	return ...;
 }
 //Esto lo podemos poner en rules(), para realizar comprobaciones a la hora de intentar acceder a algun apartado.
+
+---------------------------- AJAX ---------------------------------
+
+Las validaciones ajax, nos permite que las validaciones de servidor tb se vean en el lado del cliente.
+Se ejecutan validaciones en el servidor asíncronamente disparadas por el cliente.
+Una peticion ajax, es una peticion asíncrona.
+Utilizamos objetos Json. json_encode() codifica a json, json_decode() decodifica de json.
+Por norma general, la comunicacion cliente/servidor, se producen al realizar una peticion get/post o
+petición sincrona. La petición ajax (asincrona), se ejecuta por la acción de un evento.
+
+En una vista donde tengamos un ActiveForm, podemos indicar en las opciones: por ejemplo en el create
+	ActiveForm::begin({
+	'enableClientValidation' => true, //activa o desactiva la validacion por parte del cliente
+	'enableAjaxValidation' => true, //activa o desactiva la validacion por ajax en el cliente.
+	})
+
+Luego en el controlador:
+	En la misma accion que queramos.
+	if(Yii::$app->request->isAjax && $model->load(...)){
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		return ActiveForm::validate($model);
+	}
