@@ -1681,3 +1681,7 @@ Luego en el controlador:
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		return ActiveForm::validate($model);
 	}
+
+Puesto en el activeForm:.begin(), se ejecuta para todos los atributos del modelo, podemos
+optar por ponerlo selectivamente para algunos atributos.
+$form->field($pelicula,'genero_id', ['enableAjaxValidation' => true]);
