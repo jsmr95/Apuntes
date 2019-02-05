@@ -1685,3 +1685,10 @@ Luego en el controlador:
 Puesto en el activeForm:.begin(), se ejecuta para todos los atributos del modelo, podemos
 optar por ponerlo selectivamente para algunos atributos.
 $form->field($pelicula,'genero_id', ['enableAjaxValidation' => true]);
+
+-------------- SUBIDAS DE ARCHIVOS ------------------
+Tema 15 -> características adicionales de Yii2
+
+Irá en un formulario, que detrás tendrá un modelo.
+En Yii2 un archivo subido se representa como una instancia de UploadedFile
+ 
