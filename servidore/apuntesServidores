@@ -1691,4 +1691,44 @@ Tema 15 -> características adicionales de Yii2
 
 Irá en un formulario, que detrás tendrá un modelo.
 En Yii2 un archivo subido se representa como una instancia de UploadedFile
- 
+
+------------------- MANDAR CORREOS DESDE YII ------------------------
+
+Yii::$app->mailer    Componente que se encargar de todo lo relacionado con mandar correos.
+
+Abría que configurar esto en config/web.php
+
+Se manda desde un controlador y creando una instancia de mailer:
+Email básico.
+Yii::$app->mailer->compose()
+	->setFrom('from@domain.com')
+	->setTo('to@domain.com')
+	->setSubject('Messaje subject')
+	->setTextBody('Plain text context')
+	->setHtmlBody('<b>HTML content</b>')
+	->send();
+
+Se puede enviar por correo el resultado de renderizar una vista
+Yii::$app->mailer->compose('vistaCorreo')
+	->setFrom('from@domain.com')
+	->setTo('to@domain.com')
+	->setSubject('Messaje subject')
+	->send();
+
+La vista 'vistaCorreo' debería estar en @app/mail, a no ser que lo configuremos
+en el web.php con 'viewPath' => '@app/views/emails' por ejemplo.
+Las imagenes irán incrustadas en el correo, codificadas en base 64.
+
+Necesitaremos un agente de servicios de correos, como gmail por ejemplo.
+Es necesario que el correo esté con la autenticación en dos pasos, asociado al telefono.
+Habrá que crear una contraseña de aplicación en el gmail, la cual la tomaremos como
+token.
+
+Habría que poner el useFileTransport a false, y descomentar el modulo de transport
+y configurarlo.
+
+En params.php sirve para definir valores globales de la aplicación. Todo lo que pongas
+ahi puedes acceder desde cualquier parte de la aplicacion.
+
+Existe un archivo .env (si no esta, lo creamos) y ahí incluiremos:
+SMTP_PASS='token'
