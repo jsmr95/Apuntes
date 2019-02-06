@@ -1732,3 +1732,15 @@ ahi puedes acceder desde cualquier parte de la aplicacion.
 
 Existe un archivo .env (si no esta, lo creamos) y ahí incluiremos:
 SMTP_PASS='token'
+
+--------------------- Aplicación de consola --------------------
+
+Se ejecutan ./yii controlador/accion
+
+web/index.php (aplicación web)
+yii (aplicación de consola)
+
+Los comandos están en la carpeta commands, que serán como los controladores en nuestra
+aplicación web.
+
+Serán maryomente usadas para tareas de mantenimiento.
