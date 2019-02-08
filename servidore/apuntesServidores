@@ -1744,3 +1744,41 @@ Los comandos están en la carpeta commands, que serán como los controladores en
 aplicación web.
 
 Serán maryomente usadas para tareas de mantenimiento.
+
+------------------ PRUEBAS --------------------------
+Pruebas automáticas. (caja blanca(AVL, partición equivalente), caja negra).
+Los casos de pruebas estimulas el programa de manera que a la salida puedes comparar
+la salida con una salida ya esperada.
+Podemos decir que los casos de prueba son los datos de entrada.
+
+	SUT -> 'lo que yo voy a testear.';
+
+Tipos de pruebas: Pruebas unitarias,pruebas funcionales,
+pruebas de integración y pruebas de aceptación.
+	Unitarias-> Verifican el funcionamiento de una clase. (modulo de un programa)
+			se usan stubs (clase falsa, por si la usa la clase que estoy probando)
+			y mocks (similar a stubs).
+	Integración-> Tras las unitarias, comprobamos el comportamiento cuando integramos
+			los componentes (clases). NO LAS VAMOS A VER.
+	Aceptación-> Técnica que simula, que una persona navega por la página, por lo
+			que comprueba que el programa funciona como tiene que funcionar desde el punto
+			de vista del usuario.
+	Funcionales-> Similar a Aceptación, pero con la diferencia de que ejecutan la prueba, creando una instancia
+			de la aplicación en si, pasando todos los datos necesarios y comprueba la respuesta.
+			Estas son mucho más rápidas que las de aceptación.
+
+Yii usa codeception para las pruebas funcionales y aceptación.
+
+En meneame con make test, podemos ejecutar algunas pruebas.
+
+YII_ENV ->variable de entorno para saber en que entorno se esta ejecutando la aplicacion
+	(dev, prod, test)
+
+Codeception llama a los casos de pruebas suites, estos son las unitarias, aceptación y funcionales.
+Estan en la carpeta tests, tenemos las carpetas functional, unit y acceptance.
+Dentro de las clases, cada método es un caso de prueba.
+El método _before no es un caso de prueba, se ejecuta automaticamente, justo antes
+de entrar en cada caso de prueba.
+
+Para realizar las pruebas de aceptación -> tests/setup-acceptance.sh (Ejecutar una sola vez)
+Ahora con make test, tb ejecutan las pruebas de aceptación.
