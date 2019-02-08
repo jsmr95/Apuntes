@@ -1782,3 +1782,15 @@ de entrar en cada caso de prueba.
 
 Para realizar las pruebas de aceptación -> tests/setup-acceptance.sh (Ejecutar una sola vez)
 Ahora con make test, tb ejecutan las pruebas de aceptación.
+Si queremos quitarlas -> rm tests/acceptance.suite.yml
+
+El ejecutable de Codeception está en vendor/bin/codecept
+
+En codeception hay dos formas de escribir el nombre de las clases que llevan a cabo las pruebas:
+	cept y cest
+
+Se hace así: vendor/bin/codecept generate:cest functional PaginaPrincipalCest
+				ejecutable			generador	tipo de pruebas		nombre de clase
+
+Para ejecutar una prueba solo -> vendor/bin/codecept run functional nombreClasePrueba
+En vez de functional puede ser acceptance o unitaria.
