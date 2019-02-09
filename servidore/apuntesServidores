@@ -1794,3 +1794,22 @@ Se hace así: vendor/bin/codecept generate:cest functional PaginaPrincipalCest
 
 Para ejecutar una prueba solo -> vendor/bin/codecept run functional nombreClasePrueba
 En vez de functional puede ser acceptance o unitaria.
+
+------------------- PASO DE PARAMETROS DEL EMAIL A LA ACCION ---------------------
+Ya en la vista de email ->
+Creamos un enlace por ejemplo:
+<?= Html::a('Text',
+	['/controller/action'], [
+	'data-method' => 'POST',
+	'data-params' => [
+		'param1' => 1,
+		'param2' => 2,
+	],
+	]) ?>
+
+
+	Luego en la accion ->
+	public funcion actionAction(){
+	$param1 = Yii::$app->request->post('param1',null);
+	$param2 = Yii::$app->request->post('param2',null);
+	}
