@@ -1794,3 +1794,16 @@ Se hace así: vendor/bin/codecept generate:cest functional PaginaPrincipalCest
 
 Para ejecutar una prueba solo -> vendor/bin/codecept run functional nombreClasePrueba
 En vez de functional puede ser acceptance o unitaria.
+
+
+---------------------------- CodeSniffer ----------------------------
+
+Herramienta que busca/analiza código que probablemente esté mal.
+
+
+CS-Fixer -> Programa que te corrige estos errores.
+
+--------------------------- Fixtures --------------------------------
+Al hacer pruebas o escribir el programa, generan información automaticamente de
+forma aleatoria (normalmente) y su objetivo es rellenar la bd con esa informacion
+sin tener que meterla a mano.
