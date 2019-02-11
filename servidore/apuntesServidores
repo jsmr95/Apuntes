@@ -1795,7 +1795,24 @@ Se hace así: vendor/bin/codecept generate:cest functional PaginaPrincipalCest
 Para ejecutar una prueba solo -> vendor/bin/codecept run functional nombreClasePrueba
 En vez de functional puede ser acceptance o unitaria.
 
+------------------- PASO DE PARAMETROS DEL EMAIL A LA ACCION ---------------------
+Ya en la vista de email ->
+Creamos un enlace por ejemplo:
+<?= Html::a('Text',
+	['/controller/action'], [
+	'data-method' => 'POST',
+	'data-params' => [
+		'param1' => 1,
+		'param2' => 2,
+	],
+	]) ?>
 
+
+	Luego en la accion ->
+	public funcion actionAction(){
+	$param1 = Yii::$app->request->post('param1',null);
+	$param2 = Yii::$app->request->post('param2',null);
+	}
 ---------------------------- CodeSniffer ----------------------------
 
 Herramienta que busca/analiza código que probablemente esté mal.
@@ -1807,3 +1824,20 @@ CS-Fixer -> Programa que te corrige estos errores.
 Al hacer pruebas o escribir el programa, generan información automaticamente de
 forma aleatoria (normalmente) y su objetivo es rellenar la bd con esa informacion
 sin tener que meterla a mano.
+
+------------------------- Faker -------------------------------------
+Es el que inyecta en las bases de datos los atributos que queramos, los genera
+aleatoriamente.
+
+En unit/fixtures/PersonasFixture se crea la clase Fixture delmodelo que queramos.
+En unit/templates/fixtures/personas.php -> se crean los atributos a introducir
+	en la tabla. Se tiene que llamar igual que la tabla. A esto se le llama plantilla.
+
+Una vez tengamos la plantilla:
+	./yii fixture/generate personas --count=X
+Genera X instancias de personas
+Se generan los datos en ->unit/fixtures/data/personas.php
+
+Y con ./yii fixture/load Personas
+Hay que pasarle el nombre del modelo, y el sistema mismo, se encargará de buscar
+el archivo de datos de personas generado el cual se inyectará.
