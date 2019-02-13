@@ -1841,3 +1841,27 @@ Se generan los datos en ->unit/fixtures/data/personas.php
 Y con ./yii fixture/load Personas
 Hay que pasarle el nombre del modelo, y el sistema mismo, se encargará de buscar
 el archivo de datos de personas generado el cual se inyectará.
+
+---------------------- Despliegue en Heroku ----------------------------------
+
+Entornos de ejecución (desarrollo(dev)->local, producción(prod)->remoto, prueba(test)->local/remoto,
+ 						pre-producción(staging)->remoto)
+La nube (Cloud) va a través del git, cada push, la nube se encarga de generar la nueva versión
+del programa y la expande las maquinas virtuales que tenga en uso en cuestion de 0.1s
+
+Tipos de nubes: capas de abstracción(IaaS(Infraestructura como servicio)->VPS
+			, PaaS(Plataforma como Servicio)->Servidor de aplicaciones(Heroku)
+			, SaaS(Software como Servicio))->Aplicaciones de pago por ejemplo
+
+Pagina: 12factor.net/es/ ->Pagina dedicada a una declaración de intenciones.
+
+Para poder tener en varios despliegues(desarrollo, prod..), el mismo código desplegado,
+la misma version... el código está en un repositorio git, que siempre será el mismo.
+Lo que cambia es la configuración, las variables de entorno, que serán distintas
+dependiendo del entorno que nos encontremos.
+
+Una release para Heroku es la unión de un código compilado + la configuración de esta.
+Una release es un paquete listo para desplegar.
+
+logPlex -> lugar donde van todos los registros de una aplicacion.
+para no almacenar los logs independientes en cada maquina virtual (proceso ->DYNO)
