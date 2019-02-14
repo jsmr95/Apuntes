@@ -1865,3 +1865,23 @@ Una release es un paquete listo para desplegar.
 
 logPlex -> lugar donde van todos los registros de una aplicacion.
 para no almacenar los logs independientes en cada maquina virtual (proceso ->DYNO)
+
+Instalar heroku CLI :
+	sudo snap install --classic heroku
+ e instalar ->
+ curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+
+Una vez creado, en la web, creamos una app, y añadimos el addons Heroku postgres
+Luego en la consola haces un heroku login y heroku git:remote -a (nombre de tu app en heroku),
+esto lo haces dentro de tu repositorio de GitHub Entonces ya tenemos dos remotos, github y heroku
+
+Con heroku psql -> podemos acceder a la bd remota de heroku
+debemos crear la extension pgcrypto en la bd remota ->create extension pgcrypto;
+y luego inyectamos las bd, en la remota -> heroku psql < db/mueveme.sql
+
+git push heroku master -> pushear codigo a heroku
+
+Para que funcione, debemos cambiar la configuración para indicar que estamos en entorno de
+produccion, en heroku config (YII_ENV = prod)
+
+heroku config:add YII_ENV=prod
