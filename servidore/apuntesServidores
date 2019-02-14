@@ -1885,3 +1885,8 @@ Para que funcione, debemos cambiar la configuración para indicar que estamos en
 produccion, en heroku config (YII_ENV = prod)
 
 heroku config:add YII_ENV=prod
+
+Para volver a una release anterior -> heroku releases:rollback v5
+Pero esto tb genera otra release
+
+heroku ps -> para ver la limitacion horaria mensual que tenemos en heroku
