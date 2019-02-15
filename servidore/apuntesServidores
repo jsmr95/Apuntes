@@ -1890,3 +1890,21 @@ Para volver a una release anterior -> heroku releases:rollback v5
 Pero esto tb genera otra release
 
 heroku ps -> para ver la limitacion horaria mensual que tenemos en heroku
+
+Cuando tenemos mas de un dyno, donde guardamos las variables de sesion?? Ya que si lo
+guardas en un dyno, si resuelves una peticion por otro dyno, no te reconocerá como
+logueado, asi que:
+Deberiamos crear una tabla session->
+CREATE TABLE session(
+	id CHAR(40) PRIMARY KEY,
+	expire INTEGER
+	data BYTEA
+)
+e indicarle al sistema en los componente->
+return [
+'components' => [
+	'session' => [
+		'class' => 'yii\web\DbSession',
+	],
+],
+];
