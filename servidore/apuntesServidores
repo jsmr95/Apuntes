@@ -1905,6 +1905,35 @@ return [
 'components' => [
 	'session' => [
 		'class' => 'yii\web\DbSession',
+		],
 	],
-],
 ];
+
+------------------------ MIGRACIONES ------------------------------
+Las migraciones son el ""git"" para las bases de datos.
+Las migraciones nos permiten hacer cambios incrementales sobre las bases de
+datos. Tambien se puede versionar los cambios, para ver el seguimiento que a
+habido en una bd.
+
+./yii migrate/ -> comando
+
+Todas las migraciones se almacenan en @app/migrations, son archivos .php, contienen
+el código necesario para modificar la bd en esa migración. El nombre del archivo,
+contiene un timestamp, el cual indica el 'orden' en el que se tiene que ejecutar
+esa migración. El orden es muy importante.
+
+El framework debe saber en qué migración está su bd en todo momento.
+
+./yii migrate/create create_xxx_table ->añadir tabla nueva.
+
+el archivo de migracion, tiene algunos metodos como, safeUp(), safeDown(),...
+safeUp, te crea la tabla, te avanza a esa migración.
+safeDown, te borra la tabla, vuelve atrás.
+
+Que se ejecutan con ./yii migrate/up -> TE LLEVA a la ultima migración disponible
+					./yii migrate/down -> Te lleva una migración atrás
+
+Añadir columna ->
+	./yii migrate/create add_xxx_column_to_xxx_table
+
+... Muchas mas opciones: consultar yiiframework/doc/guide -> db-migrations
