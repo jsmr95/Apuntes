@@ -1943,3 +1943,7 @@ Y desde ese terminal, aplicamos ./yii migrate/up para aplicar las migraciones
 al entorno de producción.
 
 O lo que es lo mismo -> heroku run "./yii migrate";
+
+
+----------------------------- MODALES --------------------------------
+Ventanas interactivas de JavaScript que saltan y tenemos que hacer algo(usuario).
