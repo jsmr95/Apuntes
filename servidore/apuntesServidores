@@ -628,6 +628,7 @@ Deberia pushear la rama al remoto -> git push -u origin master
 La primera vez que entramos en un proyecto de yii
 Debemos indicar al atom que es un proyecto, para ello:
 Ctrl+Mayus+P -> buscamos save project, y pulsamos save.
+Ctrl+Mayus+P -> buscamos Serenata set up current.
 Ctrl+Mayus+P -> PHP ide serenata, tb lo ejecutamos.
 
 Para ejecutar un proyecto yii-> .yii/ serve
